@@ -1,0 +1,49 @@
+#! /usr/bin/env python3
+
+import sys
+
+if len(sys.argv) != 3 and len(sys.argv) != 4:
+    exit(84)
+try:
+    n = int(sys.argv[1])
+except ValueError:
+    exit(84)
+if n <= 0:
+    exit(84)
+
+if len(sys.argv) == 3:
+    try:
+        k = float(sys.argv[2])
+    except ValueError:
+        exit(84)
+    if k < 1 or k > 4:
+        exit(84)
+    i = int(1)
+    x1 = float(n)
+    print ("{0} {1:.2f}".format(i, x1))
+    while i < 100:
+        x1 = k * x1 * ((1000 - x1) / 1000)
+        i = i + 1
+        print ("{0} {1:.2f}".format(i, x1))
+
+if len(sys.argv) == 4:
+    try:
+        i0 = int(sys.argv[2])
+        i1 = int(sys.argv[3])
+    except ValueError:
+        exit(84)
+    if i0 <= 0 or i1 <= 0 or i1 <= i0:
+        exit(84)
+    i = int(1)
+    k = float(1)
+    x1 = float(n)
+    while k < 4:
+        while i < i0:
+            x1 = k * x1 * ((1000 - x1) / 1000)
+            i = i + 1
+        while i <= i1:
+            x1 = k * x1 * ((1000 - x1) / 1000)
+            print ("{0:.2f} {1:.2f}".format(k, x1))
+            i = i + 1
+        i = 0
+        k = k + 0.01
