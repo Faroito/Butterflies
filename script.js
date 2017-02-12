@@ -1,42 +1,18 @@
 var mainCanvas = document.getElementById("myCanvas");
 var mainContext = mainCanvas.getContext('2d');
 
-var generations = [];
 var butterflies = [];
-
-/*function setButterfly(size, xPos, yPos) {
-    for (var tmp = 0; tmp < 2000; tmp += 1)
-    {
-		var x = Math.sin(tmp) * (Math.exp(Math.cos(tmp)) - (2 * Math.cos(4 * tmp)) - Math.pow(Math.sin(tmp / 12), 6));
-		var y = Math.cos(tmp) * (Math.exp(Math.cos(tmp)) - (2 * Math.cos(4 * tmp)) - Math.pow(Math.sin(tmp / 12), 6));
-		x = -x * size + xPos;
-		y = -y * size + yPos;
-		mainContext.fillRect(x, y, 1, 1);
-    }
-}*/
 
 function setButterfly(size, xPos, yPos) {
 	mainContext.fillRect(xPos, yPos, size, size);
 }
 
 function Butterfly(size, xPos, yPos, color) {
-    this.size = size;
-    this.xPos = xPos;
-    this.yPos = yPos;
-    this.color = color;
-    this.opacity = 1;
-}
-
-Butterfly.prototype.update = function() {    
-    this.size += 0.2;
-    this.opacity -= 0.02;
-    mainContext.beginPath();
-    setButterfly(this.size, this.xPos, this.yPos);
+    setButterfly(size, xPos, yPos);
     mainContext.closePath();
-    mainContext.fillStyle = this.color.replace("[[opacity]]", this.opacity);
+    mainContext.fillStyle = color.replace("[[opacity]]", 0.8);
     mainContext.fill();
-    return (this.opacity);
-};
+}
 
 function randomColor() {
 	var red = Math.round(55 + Math.random() * 200);
@@ -45,43 +21,41 @@ function randomColor() {
 	return ('rgba(' + red + ',' + blue + ',' + green + ", [[opacity]])");
 }
 
-function drawButterflies(number) {
-    for (var i = 0; i < number; i++) 
+function drawButterflies(nb, k, lim) {
+	mainContext.clearRect(0, 0, 1200, 700)
+    for (var i = 0; i < nb; i++) 
     {
-    	//var randomX = 100 + Math.round(Math.random() * 1300);
-        //var randomY = 100 + Math.round(Math.random() * 600);
-        var randomX = 10 + Math.round(Math.random() * 1460);
-        var randomY = 10 + Math.round(Math.random() * 760);
-        var size = 15 + Math.random() * 15;
-        var color = randomColor();
-        var butterfly = new Butterfly(size, randomX, randomY, color);
-        butterflies.push(butterfly);
-    }
-    draw();
+       	var randomX = 10 + Math.round(Math.random() * 1160);
+       	var randomY = 10 + Math.round(Math.random() * 660);
+       	var size = 15 + Math.random() * 15;
+       	var color = randomColor();
+       	var butterfly = new Butterfly(size, randomX, randomY, color);
+       	butterflies.push(butterfly);
+   	}
 }
 
-/*function draw() {
-    mainContext.clearRect(0, 0, 1500, 800);
-    for (var i = 0; i < butterflies.length; i++) 
-    {
-        var myButterfly = butterflies[i];
-        limits = myButterfly.update();
-    }
-    if (limits > 0) {
-    	requestAnimationFrame(draw);
-    }
-}*/
+var start = 10;
+var k = 3.3;
+var end = 100;
+var i = 0;
+var nb = start;
+var speed = 1000;
+var myVar;
 
-function draw() {
-    mainContext.clearRect(0, 0, 1500, 800);
-    for (var i = 0; i < butterflies.length; i++) 
-    {
-        var myButterfly = butterflies[i];
-        limits = myButterfly.update();
-    }
-    if (limits > 0) {
-    	requestAnimationFrame(draw);
-    }
+function generation() {
+	nb = k * nb * ((1000 - nb) / 1000);
+	drawButterflies(Math.round(nb));
+	console.log(Math.round(nb))
+	i += 1;
+	if (i < end) {
+		myVar = setTimeout(generation, 1000);
+	}
 }
 
-drawButterflies(10);
+function getFormValues() {
+    start = document.getElementById("nbdepart").value;
+    end = document.getElementById("nbgenerations").value;
+    k = document.getElementById("growthrate").value;
+    speed = document.getElementById("speed").value * 1000;
+    generation();
+}

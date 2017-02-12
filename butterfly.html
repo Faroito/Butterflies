@@ -8,18 +8,78 @@
     body {
       margin: 0px;
       padding: 50px;
+      font-family:Trebuchet, sans-serif;
+    }
+    #container {
+    	display:flex;
+    	justify-content:space-around;
+    	align-items:center;
+    	flex-direction:row;
     }
     #myCanvas {
       border: 1px #CCC solid;
+      float:right;
+    }
+    .monform {
+      float: left;
+      //width:20%;
+      text-align:center;
+      border: 1px #CCC solid;
+      padding:10px;
+ 
+    }
+    .monform label {
+		  display:inline-block;
+		  width:150px;
+      min-height: 40px;
+		  text-align:right;
+    }
+    .valider {
+      background:blue;
+      border:none;
+		  color:white;
+      text-transform:uppercase;
+		  font-weight:bold;
+    }	
+    .adroite {
+
+      float:right;
+    }
+    .adroite::after {
+      display:block;
+      content:'';
+      clear:both;
+    }
+    .bouton {
+      display:inline-block;
     }
   </style>
 </head>
- 
 <body>
   <div id="container">
-    <canvas id="myCanvas" width="1500" height="800"></canvas>
+  	<form class="monform">
+  		<div class="champ">
+  			<label for="nbdepart">Nb de papillons</label>
+  			<input id="nbdepart"/>
+  		</div>
+  		<div class="champ">
+  			<label for="nbgenerations">Nb de générations</label>
+  			<input id="nbgenerations"/>
+  		</div> 
+      <div class="champ">
+        <label for="growthrate">Growth rate</label>
+        <input id="growthrate"/>
+      </div>
+      <div class="champ">
+        <label for="speed">Vitesse d'évolution</label>
+        <input id="speed"/>
+      </div>
+      <div class="bouton">
+  		  <input class="valider" type="button" value="Play !" onclick="getFormValues();return false;"> 	
+      </div>  
+ 	  </form>
+ 	  <canvas id="myCanvas" width="1200" height="700"></canvas>
   </div>
   <script type="text/javascript" src="script.js"></script>
 </body>
- 
 </html>
