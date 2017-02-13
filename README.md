@@ -2,12 +2,14 @@
 
 ## Description
 
-In mathematics I had to do an evolution simulator of butterflies, how with a growth rate, they will evolve. 
+In mathematics I had to do a simulator of the evolution of butterflies.
+For example, if you have 100 butterflies and a low growth rate, after many generations they will eventually die. 
+If you have a normal growth rate their population will stabilize. 
+Finally if there is a high growth rate, the population will be high but, due to a lack of food, many butterflies will die.
 
-For exemple, if we have 100 butterflies and a low growth rate, after many generation they will eventually dies. If we have a normal growth rate their population will be stabilise. Finally if there is a hight growth rate, the popultion will be hight to but due to a lack of food many butterflies will dies.
+I first developped this algorithm in Python, then I designed a graphical interface in Javascript.
 
-So I first did this algorithm in Python, after I did a graphical interface in Javascript.
-
+![alt tag](.screenshot.png)
 
 ## How to use
 
