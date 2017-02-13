@@ -1,7 +1,10 @@
 var mainCanvas = document.getElementById("my-canvas");
 var mainContext = mainCanvas.getContext('2d');
 var mainGraph = document.getElementById("my-graph");
+var widthGraph = document.getElementById("my-canvas").offsetHeight;
 var graphContext = mainGraph.getContext('2d');
+
+console.log(widthGraph);
 
 var k;
 var end;
@@ -9,7 +12,9 @@ var i;
 var nb;
 var speed;
 var myVar;
+
 var butterflies = [];
+var graph = [];
 
 function setButterfly(size, xPos, yPos) {
     mainContext.fillRect(xPos, yPos, size, size);
@@ -36,8 +41,7 @@ function drawButterflies(nb) {
         var randomY = 10 + Math.round(Math.random() * 660);
         var size = 15 + Math.random() * 15;
         var color = randomColor();
-        var butterfly = new Butterfly(size, randomX, randomY, color);
-        butterflies.push(butterfly);
+        Butterfly(size, randomX, randomY, color);
     }
     graphContext.fillStyle = color.replace("0.8", 1);;
 }
