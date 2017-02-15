@@ -15,7 +15,8 @@ I first developped this algorithm in Python, then I designed a graphical interfa
 ## How to use
 
 This interface is in french so :
-     * "Nb de papillons" is how many butterflies are living at the start
-     * "Nb de generation" is how many generation you want to simulate
-     * "Taux de croissance" is the growth rate
-     * "Intervalle (en s)" is the speed of interval between two generation
+
+     * Nb de papillons is how many butterflies are living at the start
+     * Nb de generation is how many generation you want to simulate
+     * Taux de croissance is the growth rate
+     * Intervalle (en s) is the speed of interval between two generation
